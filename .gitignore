@@ -12,3 +12,4 @@ premake5.exe
 
 # Project
 build
+obj

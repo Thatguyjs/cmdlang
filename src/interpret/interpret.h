@@ -35,11 +35,11 @@ public:
 	Interpreter(const char* path);
 
 
-	// Run the program
+	// Run the interpreter
 	int run();
 
 
-	// Get the error message from an error code
+	// Get the message from an error code
 	static const char* errorMessage(int code);
 
 };

@@ -3,6 +3,7 @@
 
 namespace File {
 
+	// Read a file
 	std::string read(const char* path, int* error) {
 		std::string result = "";
 
@@ -21,6 +22,17 @@ namespace File {
 		}
 
 		return result;
+	}
+
+	// Create a file
+	std::fstream create(const char* path, int* error) {
+		std::fstream file(path, std::ios::out);
+
+		if (!file) {
+			*error = 3;
+		}
+
+		return file;
 	}
 
 

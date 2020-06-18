@@ -56,14 +56,23 @@ int main(int argc, char** argv) {
 
 		int error = myInt.run();
 
-		if (error != 0) {
+		if (error) {
 			std::cout << "Error: [" << error << "]: " << Interpreter::errorMessage(error) << std::endl;
 			system("pause");
 			return error;
 		}
 	}
 	else if (argv[1][1] == 'm') {
-		std::cout << "Compress program" << std::endl;
+		Compress myComp(argv[2]);
+
+		int error = myComp.run();
+		error = myComp.write(argv[3]);
+
+		if (error) {
+			std::cout << "Error: [" << error << "]: " << Compress::errorMessage(error) << std::endl;
+			system("pause");
+			return error;
+		}
 	}
 	else if (argv[1][1] == 'c') {
 		std::cout << "Transpile program" << std::endl;

@@ -1,5 +1,5 @@
 / Include the standard library
-|C:\Users\thoma\desktop\cmdlang\tests\standard.cl|
+|C:\Users\YOUR_USERNAME\desktop\cmdlang\lib\standard.cl|
 
 
 

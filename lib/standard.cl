@@ -124,7 +124,7 @@
 !std_memory;
 
 
-/ Clear a memory range, including parameters
+/ Clear a cell range, including parameters
 =21 ( >
 	=0 (@std_end;)
 

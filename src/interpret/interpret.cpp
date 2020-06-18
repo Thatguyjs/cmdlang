@@ -16,8 +16,6 @@ Interpreter::Interpreter(const char* path) {
 // Run the program
 int Interpreter::run() {
 	while (this->_index < this->_dataLength && !this->_error) {
-
-		// Next character
 		switch (this->_data[this->_index]) {
 
 		// Whitespace

@@ -3,8 +3,7 @@
 
 
 
-/ Program Start
-
+/ Multiplication
 =0 ( + >
 	/ Operation flag
 	++++ ++++ ++++ +
@@ -26,7 +25,27 @@
 } <<
 
 
+/ Division
 =1 ( + >
+	/ Reset cells
+	[-] > [-] <
+
+	/ Operation flag
+	++++ ++++ ++++ ++
+
+	/ Parameters
+	> ++++ ++++ +++
+	> ++
+
+	{Divide } <: { by } >: {
+} <<
+
+	@std_math;
+)
+
+
+/ Addition
+=2 ( + >
 	/ Reset cells
 	[-] > [-] <
 
@@ -44,7 +63,8 @@
 )
 
 
-=2 ( + >
+/ Subtraction
+=3 ( + >
 	/ Reset cells
 	[-] > [-] <
 

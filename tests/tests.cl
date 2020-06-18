@@ -1,5 +1,5 @@
 / Include the standard library
-|C:\Users\YOUR_USERNAME\desktop\cmdlang\lib\standard.cl|
+|lib/standard.cl|
 
 
 
@@ -9,7 +9,7 @@
 	/ Operation flag
 	++++ ++++ ++++ +
 
-	/ Numbers to use
+	/ Parameters
 	> ++
 	> ++++
 
@@ -20,7 +20,7 @@
 )
 
 
-/ Multiply results
+/ Expression results
 {Result: } >: {
 
 } <<
@@ -31,14 +31,32 @@
 	[-] > [-] <
 
 	/ Operation flag
-	++++ ++++ ++++ +
+	++++ ++++ +++
 
-	/ Numbers to use
+	/ Parameters
 	> ++++
 	> +++++++++
 
-	{Multiply } <: { and } >: {
+	{Add } <: { and } >: {
 } <<
+
+	@std_math;
+)
+
+
+=2 ( + >
+	/ Reset cells
+	[-] > [-] <
+
+	/ Operation flag
+	++++ ++++ ++++
+
+	/ Parameters
+	> +++++++
+	> +++
+
+	{Subtract } : { from } <: {
+} <
 
 	@std_math;
 )

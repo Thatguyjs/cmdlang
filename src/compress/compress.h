@@ -20,6 +20,7 @@ private:
 
 	// Program info
 	std::string _result = "";
+
 	std::vector<JumpAttr> _jumps;
 	unsigned _jumpNum = 0;
 

@@ -11,6 +11,27 @@ Compress::Compress(const char* path) {
 // Run the compressor
 int Compress::run() {
 	while (this->_index < this->_dataLength && !this->_error) {
+
+		// Optimize commands
+		if (this->_data[this->_index] == '<' && this->_data[this->_index + 1] == '>') {
+			this->_index += 2;
+			continue;
+		}
+		else if (this->_data[this->_index] == '>' && this->_data[this->_index + 1] == '<') {
+			this->_index += 2;
+			continue;
+		}
+		else if (this->_data[this->_index] == '+' && this->_data[this->_index + 1] == '-') {
+			this->_index += 2;
+			continue;
+		}
+		else if (this->_data[this->_index] == '-' && this->_data[this->_index + 1] == '+') {
+			this->_index += 2;
+			continue;
+		}
+
+
+		// Add commands
 		switch (this->_data[this->_index]) {
 
 		// Whitespace
@@ -47,21 +68,66 @@ int Compress::run() {
 
 
 		// Create a jump point
-		// TODO: Abbreviate jump names
 		case '!':
-			this->_result += '!';
+			{
+				std::string name = "";
+				this->_result += '!';
 
-			while (this->_data[this->_index++] != ';') {
-				this->_result += this->_data[this->_index];
+				while (this->_data[++this->_index] != ';') {
+					name += this->_data[this->_index];
+				}
+
+				bool found = false;
+
+				for (unsigned i = 0; i < this->_jumpNum; i++) {
+					if (name == this->_jumps[i]._name.data()) {
+						found = true;
+						this->_result += this->_jumps[i]._alias;
+						break;
+					}
+				}
+
+				if(!found) {
+					this->_result += std::to_string(this->_jumpNum);
+
+					this->_jumps.push_back(JumpAttr(name, std::to_string(this->_jumpNum)));
+					this->_jumpNum++;
+				}
+
+				this->_result += ';';
+				this->_index++;
 			}
 			break;
 
 		// Go to a jump point
 		case '@':
-			this->_result += '@';
+			{
+				std::string name = "";
+				this->_result += '@';
 
-			while (this->_data[this->_index++] != ';') {
-				this->_result += this->_data[this->_index];
+				while (this->_data[++this->_index] != ';') {
+					name += this->_data[this->_index];
+				}
+
+				bool found = false;
+
+				for (unsigned i = 0; i < this->_jumpNum; i++) {
+					if (name == this->_jumps[i]._name.data()) {
+						found = true;
+						this->_result += this->_jumps[i]._alias;
+						break;
+					}
+				}
+
+				if (!found) {
+					this->_result += std::to_string(this->_jumpNum);
+
+					this->_jumps.push_back(JumpAttr(name, std::to_string(this->_jumpNum)));
+					this->_jumpNum++;
+				}
+
+				this->_result += ';';
+				this->_index++;
 			}
 			break;
 
@@ -116,6 +182,8 @@ int Compress::run() {
 
 // Write the result
 int Compress::write(const char* path) {
+	if (this->_error) return this->_error;
+
 	std::fstream file = File::create(path, &this->_error);
 
 	if (this->_error) return this->_error;

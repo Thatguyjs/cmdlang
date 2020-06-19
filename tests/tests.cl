@@ -186,12 +186,68 @@
 )
 
 
+/ More than
+=12 ( + >>
+	/ Section & command numbers (1:5)
+	+ > ++++ +
+
+	/ Parameters
+	> +++ > ++
+
+	{Check if } <: { > } >: {
+} <<
+
+	@std_top;
+)
+
+=13 ( + >>
+	/ Section & command numbers (1:5)
+	+ > ++++ +
+
+	/ Parameters
+	> ++ > +++
+
+	{Check if } <: { > } >: {
+} <<
+
+	@std_top;
+)
+
+
+/ Less than
+=14 ( + >>
+	/ Section & command numbers (1:6)
+	+ > ++++ ++
+
+	/ Parameters
+	> ++ > +++
+
+	{Check if } <: { < } >: {
+} <<
+
+	@std_top;
+)
+
+=15 ( + >>
+	/ Section & command numbers (1:6)
+	+ > ++++ ++
+
+	/ Parameters
+	> +++ > ++
+
+	{Check if } <: { < } >: {
+} <<
+
+	@std_top;
+)
+
+
 
 / Math
 
 
 / Addition
-=12 ( + >>
+=16 ( + >>
 	/ Section & command numbers (2:1)
 	++ > +
 
@@ -206,7 +262,7 @@
 
 
 / Subtraction
-=13 ( + >>
+=17 ( + >>
 	/ Section & command numbers (2:2)
 	++ > ++
 
@@ -221,7 +277,7 @@
 
 
 / Multiplication
-=14 ( + >>
+=18 ( + >>
 	/ Section & command numbers (2:3)
 	++ > +++
 
@@ -236,7 +292,7 @@
 
 
 / Division
-=15 ( + >>
+=19 ( + >>
 	/ Section & command numbers (2:4)
 	++ > ++++
 

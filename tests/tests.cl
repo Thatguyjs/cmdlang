@@ -3,80 +3,248 @@
 
 
 
-/ Multiplication
-=0 ( + >
-	/ Operation flag
-	++++ ++++ ++++ +
+[
+	/ Log results
+	{Result: } >:< {
+
+} <<<
+
+	/ Reset cells
+	> [-] > [-] > [-] > [-] > [-] <<<<<
+
+	@program;
+]
+
+!program;
+
+
+
+/ Logic
+
+
+/ Convert to boolean
+=0 ( + >>
+	/ Section & command numbers (1:1)
+	+ > +
 
 	/ Parameters
-	> ++
+	> ++++
+	
+	{Converting } : { to a boolean
+} <
+
+	@std_top;
+)
+
+=1 ( + >>
+	/ Section & command numbers (1:1)
+	+ > +
+
+	/ Parameters
+	>
+
+	{Converting } : { to a boolean
+} <
+
+	@std_top;
+)
+
+
+/ NOT gate
+=2 ( + >>
+	/ Section & command numbers (1:2)
+	+ > ++
+
+	/ Parameters
 	> ++++
 
-	{Multiply } <: { and } >: {
-} <<
-	
-	@std_math;
+	{NOT gate } : {
+} <
+
+	@std_top;
 )
 
-
-/ Expression results
-{Result: } >: {
-
-} <<
-
-
-/ Division
-=1 ( + >
-	/ Reset cells
-	[-] > [-] <
-
-	/ Operation flag
-	++++ ++++ ++++ ++
+=3 ( + >>
+	/ Section & command numbers (1:2)
+	+ > ++
 
 	/ Parameters
-	> ++++ ++++ +++
-	> ++
+	>
 
-	{Divide } <: { by } >: {
+	{NOT gate } : {
+} <
+
+	@std_top;
+)
+
+
+/ AND gate
+=4 ( + >>
+	/ Section & command numbers (1:3)
+	+ > +++
+
+	/ Parameters
+	> + > ++
+
+	{AND gate } <: {, } >: {
 } <<
 
-	@std_math;
+	@std_top;
 )
+
+=5 ( + >>
+	/ Section & command numbers (1:3)
+	+ > +++
+
+	/ Parameters
+	> + >
+
+	{AND gate } <: {, } >: {
+} <<
+
+	@std_top;
+)
+
+=6 ( + >>
+	/ Section & command numbers (1:3)
+	+ > +++
+
+	/ Parameters
+	> > +
+
+	{AND gate } <: {, } >: {
+} <<
+
+	@std_top;
+)
+
+=7 ( + >>
+	/ Section & command numbers (1:3)
+	+ > +++
+
+	/ Parameters
+	> >
+
+	{AND gate } <: {, } >: {
+} <<
+
+	@std_top;
+)
+
+
+/ OR gate
+=8 ( + >>
+	/ Section & command numbers (1:4)
+	+ > ++++
+
+	/ Parameters
+	> + > ++
+
+	{OR gate } <: {, } >: {
+} <<
+
+	@std_top;
+)
+
+=9 ( + >>
+	/ Section & command numbers (1:4)
+	+ > ++++
+
+	/ Parameters
+	> + >
+
+	{OR gate } <: {, } >: {
+} <<
+
+	@std_top;
+)
+
+=10 ( + >>
+	/ Section & command numbers (1:4)
+	+ > ++++
+
+	/ Parameters
+	> > +
+
+	{OR gate } <: {, } >: {
+} <<
+
+	@std_top;
+)
+
+=11 ( + >>
+	/ Section & command numbers (1:4)
+	+ > ++++
+
+	/ Parameters
+	> >
+
+	{OR gate } <: {, } >: {
+} <<
+
+	@std_top;
+)
+
+
+
+/ Math
 
 
 / Addition
-=2 ( + >
-	/ Reset cells
-	[-] > [-] <
-
-	/ Operation flag
-	++++ ++++ +++
+=12 ( + >>
+	/ Section & command numbers (2:1)
+	++ > +
 
 	/ Parameters
-	> ++++
-	> +++++++++
+	> + > ++
 
-	{Add } <: { and } >: {
+	{Add } <: { + } >: {
 } <<
 
-	@std_math;
+	@std_top;
 )
 
 
 / Subtraction
-=3 ( + >
-	/ Reset cells
-	[-] > [-] <
-
-	/ Operation flag
-	++++ ++++ ++++
+=13 ( + >>
+	/ Section & command numbers (2:2)
+	++ > ++
 
 	/ Parameters
-	> +++++++
-	> +++
+	> ++++ ++ > ++
 
-	{Subtract } : { from } <: {
-} <
+	{Subtract } <: { - } >: {
+} <<
 
-	@std_math;
+	@std_top;
+)
+
+
+/ Multiplication
+=14 ( + >>
+	/ Section & command numbers (2:3)
+	++ > +++
+
+	/ Parameters
+	> ++++ + > +++
+
+	{Multiply } <: { * } >: {
+} <<
+
+	@std_top;
+)
+
+
+/ Division
+=15 ( + >>
+	/ Section & command numbers (2:4)
+	++ > ++++
+
+	/ Parameters
+	> ++++ ++++ ++++ +++ > +++
+
+	{Divide } <: { by } >: {
+} <<
+
+	@std_top;
 )

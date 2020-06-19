@@ -7,7 +7,7 @@ Interpreter::Interpreter(const char* path) {
 	this->_dataLength = this->_data.length();
 
 	// TODO: Adjustable size
-	this->_cells = new char[30000];
+	this->_cells = new unsigned[30000];
 	memset(this->_cells, 0, 30000);
 	this->_cellNum = 30000;
 }

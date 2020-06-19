@@ -5,26 +5,56 @@
 
 
 
+/ Start of the library
+!std_top;
+
+
+
+/ Convert two numbers (section, command) to a section + command number
+[ <
+	[
+		< ++++ ++++ ++
+		> -
+	]
+
+	< [
+		> ++++ ++++ ++
+		< -
+	] >
+	
+	[
+		> +
+		< -
+	]
+> @std_commands;]
+
+
+
+/ Commands section of the library
+!std_commands;
+
+
+
 / Logic
 !std_logic;
 
 
 / Convert to boolean
-=1 ( >
+=101 ( >
 	=0 (< @std_end;)
 	[-] +
 < )
 
 
 / Convert to inverse boolean (NOT gate)
-=2 ( >
+=102 ( >
 	=0 (+ < @std_end;)
 	[-]
 < )
 
 
 / AND gate
-=3 ( >
+=103 ( >
 	>> [-] <<
 
 	[
@@ -38,7 +68,7 @@
 
 
 / OR gate
-=4 ( >
+=104 ( >
 	>> [-] <<
 
 	[
@@ -57,7 +87,7 @@
 
 
 / Add
-=11 ( >>
+=201 ( >>
 	[
 		< +
 		> -
@@ -66,7 +96,7 @@
 
 
 / Subtract
-=12 ( >>
+=202 ( >>
 	[
 		< -
 		> -
@@ -75,7 +105,7 @@
 
 
 / Multiply
-=13 ( >
+=203 ( >
 	>> [-] > [-] > [-] <<<<
 
 	[
@@ -85,7 +115,7 @@
 
 	>
 
-	!_mul_;
+	!_std_mul_;
 	[
 		> [
 			<< +
@@ -100,7 +130,7 @@
 				>> -
 			]
 
-			<<< @_mul_;
+			<<< @_std_mul_;
 		)
 
 		[
@@ -117,7 +147,7 @@
 
 
 / Divide
-=14 ( >
+=204 ( >
 	>> [-] > [-] <<<
 
 	[
@@ -136,12 +166,15 @@
 				@std_end;
 			)
 
-			-
-
-			< + < -
+			- < + < -
 		] >>
-
+		
 		<<< + >>>
+
+		=0 (
+			< [-] < [-] <<
+			@std_end;
+		)
 
 		< [
 			> -
@@ -153,7 +186,7 @@
 
 			<< + > -
 		] >
-
+		
 		<<< + >>>
 	]
 < )
@@ -165,7 +198,7 @@
 
 
 / Clear a cell range, including parameters
-=21 ( >
+=301 ( >
 	=0 (@std_end;)
 
 	> [-] > [-] <<

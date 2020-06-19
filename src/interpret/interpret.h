@@ -19,7 +19,7 @@ private:
 
 
 	// Program info
-	char* _cells = nullptr;
+	unsigned* _cells = nullptr;
 	unsigned _cellNum = 0;
 	unsigned _cell = 0;
 
